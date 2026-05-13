@@ -1,2 +1,2 @@
 # ReadersHub
-A place for Book Readers to connect share book and read
+A place for Book Readers to connect share book and read Book
