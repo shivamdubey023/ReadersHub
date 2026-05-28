@@ -1,0 +1,11 @@
+#-------- -------
+#Package  Version
+#-------- -------
+asgiref  3.11.1
+Django   6.0.5
+pip      26.1.1
+sqlparse 0.5.5
+graphene-3.4.3graphene-3.4.3
+django-cors-headers-4.9.0
+djangorestframework-3.17.1
+Pillow-12.2.0
