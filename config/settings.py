@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
+# pyrefly: ignore [missing-import]
 import graphene_django
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -58,7 +59,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+#CORS
+'''
+Cors is required when we have multiple origins.
+Origins is the domain from where the request is coming.
+If we have multiple origins, we have to allow all origins.
+Or if we have a specific origin, we can allow that specific origin.
+we need it because our frontend and backend are running on different ports.
+'''
 CORS_ALLOW_ALL_ORIGINS = True
+
+#GraphQL
 GRAPHENE = {
     "SCHEMA": "graphql_app.schema.schema"
 }
