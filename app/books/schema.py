@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 import graphene
 from graphene_django import DjangoObjectType
 from .models import Book, Category
@@ -19,7 +20,8 @@ class BooksQuery(graphene.ObjectType):
     trending_books = graphene.List(BookType)
     latest_books = graphene.List(BookType)
     featured_books = graphene.List(BookType)
-    search_books = graphene.List(BookType, query=graphene.String(require=True))
+    search_books = graphene.List(BookType, query=graphene.String(required=True))
+    book_by_id = graphene.Field(BookType, id=graphene.ID(required=True))
 
 
     def resolve_all_books(root, info):
@@ -38,7 +40,10 @@ class BooksQuery(graphene.ObjectType):
         return Book.objects.order_by('-views')[:10]
 
     def resolve_latest_books(root, info):
-        return Book.objects.orderby('created_at')[:10]
+        return Book.objects.order_by('-created_at')[:10]
 
-    def resolve_search_books(root, info):
-        return Book.object.filter(title__icontains=query)
+    def resolve_search_books(root, info, query):
+        return Book.objects.filter(title__icontains=query)
+ 
+    def book_count(self):
+        return self.book_set.count()
