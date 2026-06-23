@@ -1,3 +1,4 @@
+#imports
 from django.db import models
 
 # Create your models here.
@@ -14,10 +15,11 @@ class Subscription (models.Model):
         return self.name   
 
 
-class User (models.Model):
+class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    phone = models.IntegerField
+    phone = models.IntegerField(null=True, blank=True)
+    token_balance = models.PositiveIntegerField(default=0)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=True)
@@ -25,10 +27,23 @@ class User (models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    
-
     def __str__(self):
         return self.name
+
+class Transaction(models.Model):
+    TRANSACTION_TYPES = [
+        ('BUY_TOKENS', 'Buy Tokens'),
+        ('BUY_BOOK', 'Buy Book'),
+        ('BUY_SUBSCRIPTION', 'Buy Subscription'),
+    ]
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    tokens = models.PositiveIntegerField(default=0)
+    transaction_type = models.CharField(max_length=20, choices=TRANSACTION_TYPES)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.name} - {self.transaction_type}"
 
 
 class UserSubscription(models.Model):
