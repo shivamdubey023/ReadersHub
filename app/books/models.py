@@ -24,6 +24,9 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     description = models.TextField()
+    summary = models.TextField(blank=True, null=True)
+    is_premium = models.BooleanField(default=False)
+    token_price = models.PositiveIntegerField(default=0)
     genre = models.ForeignKey('Genre', on_delete=models.SET_NULL, null=True, blank=True)
     album = models.ForeignKey('Album', on_delete=models.SET_NULL, null=True, blank=True)
     cover_image = models.ImageField(upload_to='books/covers/')
@@ -33,6 +36,22 @@ class Book(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     ratings = models.FloatField(default=0.0)
 
-
     def __str__(self):
         return self.title
+
+class UserBookAccess(models.Model):
+    user = models.ForeignKey('user.User', on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    purchased_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.name} - {self.book.title}"
+
+class ReadingProgress(models.Model):
+    user = models.ForeignKey('user.User', on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    current_page = models.PositiveIntegerField(default=1)
+    last_read_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user.name} reading {self.book.title} (Page {self.current_page})"

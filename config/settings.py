@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework',
     #App
     'app.homepage',
-    'app.books'
+    'app.books',
+    'app.user',
 ]
 
 MIDDLEWARE = [

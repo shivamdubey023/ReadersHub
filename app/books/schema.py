@@ -1,7 +1,7 @@
 # pyrefly: ignore [missing-import]
 import graphene
 from graphene_django import DjangoObjectType
-from .models import Book, Category
+from .models import Book, Category, UserBookAccess, ReadingProgress
 
 class CategoryType(DjangoObjectType):
     class Meta:
@@ -11,6 +11,16 @@ class CategoryType(DjangoObjectType):
 class BookType(DjangoObjectType):
     class Meta:
         model = Book
+        fields = '__all__'
+
+class UserBookAccessType(DjangoObjectType):
+    class Meta:
+        model = UserBookAccess
+        fields = '__all__'
+
+class ReadingProgressType(DjangoObjectType):
+    class Meta:
+        model = ReadingProgress
         fields = '__all__'
 
 
@@ -47,3 +57,12 @@ class BooksQuery(graphene.ObjectType):
  
     def book_count(self):
         return self.book_set.count()
+
+    user_book_access = graphene.List(UserBookAccessType, user_id=graphene.ID(required=True))
+    reading_progress = graphene.List(ReadingProgressType, user_id=graphene.ID(required=True))
+
+    def resolve_user_book_access(root, info, user_id):
+        return UserBookAccess.objects.filter(user_id=user_id)
+
+    def resolve_reading_progress(root, info, user_id):
+        return ReadingProgress.objects.filter(user_id=user_id)

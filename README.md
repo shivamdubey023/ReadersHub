@@ -102,6 +102,28 @@ ReadersHub/
 └── venv/                # Virtual environment
 ```
 
+## 🏗️ Architecture & Platform Features
+
+Readers Hub supports advanced features for online web reading, e-commerce, and subscription models. The platform is architected with the following core modules:
+
+### 1. Database & Domain Models
+- **Users & Tokens**: Extends standard user profiles with token balances to allow micro-transactions for book access.
+- **Subscriptions**: Tiered subscription models (`UserSubscription`) granting access to premium content.
+- **Book Catalog**: Robust categorization featuring `Category`, `Genre`, and `Album`. Books include `summary`, `is_premium` flags, and `token_price`.
+- **E-Commerce & Access**: `Transaction` models to handle token top-ups and subscriptions, and `UserBookAccess` to permanently unlock specific books.
+- **Web Reading Experience**: `ReadingProgress` models strictly tracking current page and last read timestamps to allow seamless resuming.
+
+### 2. Web Application Interface
+- **`/explore`**: Central catalog to discover new books, view summaries, and filter by categories.
+- **`/book/[id]`**: Detailed view for books, prompting users to either "Read Now", "Buy for X Tokens", or "Subscribe".
+- **`/reader/[id]`**: A secure in-browser web reader designed to stream PDF/EPUB pages seamlessly without exposing raw downloadable files.
+- **`/library`**: User dashboard housing purchased books, active reading progress, and token wallet.
+- **`/pricing`**: Storefront for token bundles and subscription plans.
+
+### 3. Key Workflows
+- **Content Authorization**: The backend validates if a user holds an active subscription OR a direct `UserBookAccess` record before unlocking the PDF stream.
+- **Secure File Delivery**: PDFs are hosted via secure cloud storage (e.g., AWS S3). The API generates short-lived, pre-signed URLs to protect against unauthorized downloads.
+
 ## 💡 Usage
 
 ### For Readers
