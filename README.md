@@ -33,75 +33,6 @@ Before you begin, ensure you have the following installed:
 - Virtual environment tool (venv or virtualenv)
 - Git
 
-## 🚀 Installation & Setup
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/shivamdubey023/ReadersHub.git
-cd ReadersHub
-```
-
-### 2. Create a Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### 3. Activate Virtual Environment
-
-**On Windows:**
-```bash
-venv\Scripts\activate
-```
-
-**On macOS/Linux:**
-```bash
-source venv/bin/activate
-```
-
-### 4. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 5. Run Database Migrations (if applicable)
-
-```bash
-python manage.py migrate
-```
-
-### 6. Start the Development Server
-
-```bash
-python manage.py runserver
-```
-
-The application will be available at `http://localhost:8000`
-
-## 📁 Project Structure
-
-```
-ReadersHub/
-├── README.md
-├── requirements.txt
-├── manage.py
-├── readers_hub/          # Main project folder
-│   ├── settings.py
-│   ├── urls.py
-│   ├── wsgi.py
-│   └── ...
-├── apps/                 # Django apps
-│   ├── users/           # User management
-│   ├── books/           # Book management
-│   ├── reviews/         # Reviews and ratings
-│   └── ...
-├── templates/           # HTML templates
-├── static/              # CSS, JavaScript, images
-└── venv/                # Virtual environment
-```
-
 ## 🏗️ Architecture & Platform Features
 
 Readers Hub supports advanced features for online web reading, e-commerce, and subscription models. The platform is architected with the following core modules:
@@ -136,54 +67,6 @@ Readers Hub supports advanced features for online web reading, e-commerce, and s
 6. **Follow Users**: Connect with other readers who share your interests
 7. **Create Reading Lists**: Organize books into custom lists
 
-### For Contributors
-
-See the [Contributing](#contributing) section below.
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help:
-
-1. **Fork the repository**
-   ```bash
-   git clone https://github.com/shivamdubey023/ReadersHub.git
-   ```
-
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. **Make your changes** and commit them
-   ```bash
-   git commit -m "Add your meaningful commit message"
-   ```
-
-4. **Push to your branch**
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-5. **Create a Pull Request**
-   - Describe your changes clearly
-   - Reference any related issues
-
-## 📝 Commit Guidelines
-
-- Use clear and descriptive commit messages
-- Follow conventional commits when possible
-- Example: `feat: add book review system` or `fix: resolve profile loading issue`
-
-## 🐛 Reporting Issues
-
-Found a bug? Please create an issue with:
-
-- Clear title describing the problem
-- Steps to reproduce the issue
-- Expected vs actual behavior
-- Screenshots (if applicable)
-- Your environment details
-
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
@@ -192,19 +75,6 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - **Shivam Dubey** - Initial work and project creation
 
-## 🙏 Acknowledgments
-
-- Thanks to all contributors and community members
-- Special thanks to book lovers everywhere for the inspiration
-- Inspired by the power of community and shared love for reading
-
-## 📞 Contact & Support
-
-Have questions or suggestions? Feel free to:
-
-- Open an issue on GitHub
-- Contact the maintainer directly
-- Join our community discussions
 
 ## 🗺️ Roadmap
 
@@ -215,17 +85,6 @@ Have questions or suggestions? Feel free to:
 - [ ] Integration with Goodreads API
 - [ ] Social media sharing
 - [ ] Advanced search and filtering
-
-## 🎉 Get Started
-
-Ready to join the Readers Hub community? 
-
-1. Star this repository ⭐
-2. Fork it 🍴
-3. Contribute 🚀
-4. Share with fellow book lovers 📚
-
-Happy reading! 📖
 
 ---
 
